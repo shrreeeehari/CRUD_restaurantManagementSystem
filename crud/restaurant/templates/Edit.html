@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Report</title>
+</head>
+<body style="background-color: rgb(173, 102, 102);">
+    <center>
+        <h1>STOCK DETAILS</h1>
+        <h2>for month xx-xx</h2>
+        <form method="POST" action="/Update/{{Item.id}}">
+        {% csrf_token %}
+        
+        <table border="5" style="line-height: 30px;background-color: rgb(190, 188, 188);">
+            <tr>
+                <td style="background-color: gray;"><h3>Item id</h3></td>
+                <td style="text-align: center;"><input type="text" name="id" value="{{Item.id}}" readonly style="text-align: center;"></td>
+            </tr>
+            <tr>
+                <td style="background-color: gray;"><h3>Item name</h3></td>
+                <td style="text-align: center;"><input type="text" name="itemname" value="{{Item.itemname}}" style="text-align: center;"></td>
+            </tr>
+            <tr>
+                <td style="background-color: gray;"><h3>Amount</h3></td>
+                <td style="text-align: center;">
+                    <select name="amount">
+                        <option selected disabled="false">{{Item.amount}}</option>
+                        <option>5 units</option>
+                        <option>10 units</option>
+                        <option>15 units</option>
+                        <option>20 units</option>
+                    </select>
+                </td>
+                
+            </tr>
+            
+            <tr>
+                <td style="background-color: gray;"><h3>Bought from</h3></td>
+                <td style="text-align: center;"><input type="text" name="bought_from" value="{{Item.bought_from}}" style="text-align: center;"></td>
+            </tr>
+
+            <tr>
+                <td style="background-color: gray;column-width: 120px;"><h3>Bought on</h3></td>
+                <td style="column-width: 200px;text-align: center;"><input type="date" name="bought_on" value="{{Item.bought_on}}"></td>
+            </tr>
+
+            <tr>
+                <td style="background-color: gray;column-width: 120px;"><h3>Price(in Rs.)</h3></td>
+                <td style="column-width: 200px;text-align: center;"><input type="number" name="price" value="{{Item.price}}"></td>
+            </tr>
+
+            <tr>
+                <td style="background-color: gray;column-width: 120px;"><h3>GST applied?</h3></td>
+                <td style="column-width: 200px;text-align: center;"><input type="text" name="gst_applied" value="{{Item.gst_applied}}"></td>
+            </tr>
+
+            <tr>
+                <td style="background-color: gray; text-align:center"><h3>Ref no.</h3></td>
+                <td style="text-align: center;"><input type="text" name="ref" value="{{Item.ref}}"></td>
+                
+            </tr>
+
+            <tr>
+                <td style="background-color: gray;column-width: 120px;"><h3>Image</h3></td>
+                <td style="column-width: 200px;text-align: center;"><input type="file" accept="image/*" name="image" value="{{Item.image}}"></td>
+                             
+            </tr>
+
+
+            <tr>
+                <td style="text-align: center;"><input type="submit" value="Update"></td>
+                <td>
+                    {% if messages %}
+                    {% for mess in messages %}
+                    <b style="color: green;">{{mess}}</b>
+                    {% endfor %}
+                    {% endif %}
+                </td>
+            </tr>
+            
+        </table>
+        <a href="http://127.0.0.1:8000/">View List</a>
+    </form>
+    </center>
+
+    
+    
+</body>
+</html>

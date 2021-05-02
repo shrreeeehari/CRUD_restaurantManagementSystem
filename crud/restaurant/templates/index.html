@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Report</title>
+</head>
+<body style="background-color: rgb(173, 102, 102);">
+    <center>
+        <h1>STOCK DETAILS</h1>
+        <h2>for month xx-xx</h2>
+        <a href="{% url 'form_display' %}">Add Item</a>
+        <table border="5" style="background-color: rgb(190, 188, 188);line-height: 50px;">
+            <tr style="background-color: gray;">
+                <th><h3>Item id</h3></th>
+                <th><h3>Item name</h3></th>
+                <th><h3>Item amount</h3></th>
+                <th><h3>Bought from</h3></th>
+                <th><h3>Bought on</h3></th>
+                <th><h3>Price(in Rs.)</h3></th>
+                <th><h3>GST applied?</h3></th>
+                <th><h3>Ref no.</h3></th>
+                <th><h3>Image</h3></th>
+                <th><h3>Update</h3></th>
+                <th><h3>Remove</h3></th>
+                
+            </tr>
+
+            {% for result in data %}
+            <tr>
+                <td style="text-align: center;">{{result.id}}</td>
+                <td style="text-align: center;">{{result.itemname}}</td>
+                <td style="text-align: center;">{{result.amount}}</td>
+                <td style="text-align: center;">{{result.bought_from}}</td>
+                <td style="text-align: center;">{{result.bought_on}}</td>
+                <td style="text-align: center;">{{result.price}}</td>
+                <td style="text-align: center;">{{result.gst_applied}}</td>
+                <td style="text-align: center;">{{result.ref}}</td>
+                <td><img src="media/{{result.image}}" alt="" width=50 height=50></td>
+                <td style="column-width: 60px; text-align: center"><a href="Edit/{{result.id}}">Edit</a></td>
+                <td style="column-width: 50px; text-align: center"><a href="Delete/{{result.id}}" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </center>
+    
+</body>
+</html>
